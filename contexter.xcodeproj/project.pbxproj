@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A040CC32507221A87BF9C95 /* Pods_contexter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4022573AAC3F6393675011FF /* Pods_contexter.framework */; };
 		5B48BE101FBFAD0B00B07388 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE0F1FBFAD0B00B07388 /* AppDelegate.swift */; };
 		5B48BE121FBFAD0B00B07388 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE111FBFAD0B00B07388 /* ViewController.swift */; };
 		5B48BE151FBFAD0B00B07388 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B48BE131FBFAD0B00B07388 /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 		5B48BE1D1FBFAD0B00B07388 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B48BE1B1FBFAD0B00B07388 /* LaunchScreen.storyboard */; };
 		5B48BE281FBFAD0B00B07388 /* contexterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE271FBFAD0B00B07388 /* contexterTests.swift */; };
 		5B48BE331FBFAD0B00B07388 /* contexterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE321FBFAD0B00B07388 /* contexterUITests.swift */; };
+		5B48BE411FC094E800B07388 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 5B48BE401FC094E800B07388 /* Podfile */; };
+		5B48BE431FC0986200B07388 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE421FC0986200B07388 /* VideoCapture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4022573AAC3F6393675011FF /* Pods_contexter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_contexter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B48BE0C1FBFAD0B00B07388 /* contexter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = contexter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B48BE0F1FBFAD0B00B07388 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B48BE111FBFAD0B00B07388 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +53,10 @@
 		5B48BE2E1FBFAD0B00B07388 /* contexterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = contexterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B48BE321FBFAD0B00B07388 /* contexterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = contexterUITests.swift; sourceTree = "<group>"; };
 		5B48BE341FBFAD0B00B07388 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B48BE401FC094E800B07388 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5B48BE421FC0986200B07388 /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
+		7DED2462DDE8461F091FAF78 /* Pods-contexter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contexter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-contexter/Pods-contexter.debug.xcconfig"; sourceTree = "<group>"; };
+		EFB83806DE4BCBB0C958CCC2 /* Pods-contexter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contexter.release.xcconfig"; path = "Pods/Target Support Files/Pods-contexter/Pods-contexter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A040CC32507221A87BF9C95 /* Pods_contexter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,13 +85,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4309D1D8D93638C518F34240 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7DED2462DDE8461F091FAF78 /* Pods-contexter.debug.xcconfig */,
+				EFB83806DE4BCBB0C958CCC2 /* Pods-contexter.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5B48BE031FBFAD0B00B07388 = {
 			isa = PBXGroup;
 			children = (
+				5B48BE401FC094E800B07388 /* Podfile */,
 				5B48BE0E1FBFAD0B00B07388 /* contexter */,
 				5B48BE261FBFAD0B00B07388 /* contexterTests */,
 				5B48BE311FBFAD0B00B07388 /* contexterUITests */,
 				5B48BE0D1FBFAD0B00B07388 /* Products */,
+				4309D1D8D93638C518F34240 /* Pods */,
+				D0F484C053367E9E64E53865 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +127,7 @@
 				5B48BE1B1FBFAD0B00B07388 /* LaunchScreen.storyboard */,
 				5B48BE1E1FBFAD0B00B07388 /* Info.plist */,
 				5B48BE161FBFAD0B00B07388 /* contexter.xcdatamodeld */,
+				5B48BE421FC0986200B07388 /* VideoCapture.swift */,
 			);
 			path = contexter;
 			sourceTree = "<group>";
@@ -128,6 +150,14 @@
 			path = contexterUITests;
 			sourceTree = "<group>";
 		};
+		D0F484C053367E9E64E53865 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4022573AAC3F6393675011FF /* Pods_contexter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +165,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B48BE371FBFAD0B00B07388 /* Build configuration list for PBXNativeTarget "contexter" */;
 			buildPhases = (
+				742E4873C8FF53B8BF26767E /* [CP] Check Pods Manifest.lock */,
 				5B48BE081FBFAD0B00B07388 /* Sources */,
 				5B48BE091FBFAD0B00B07388 /* Frameworks */,
 				5B48BE0A1FBFAD0B00B07388 /* Resources */,
+				78C615D2F2EDC7FE23983973 /* [CP] Embed Pods Frameworks */,
+				4D543D48DD103575AE874A5E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -237,6 +270,7 @@
 			files = (
 				5B48BE1D1FBFAD0B00B07388 /* LaunchScreen.storyboard in Resources */,
 				5B48BE1A1FBFAD0B00B07388 /* Assets.xcassets in Resources */,
+				5B48BE411FC094E800B07388 /* Podfile in Resources */,
 				5B48BE151FBFAD0B00B07388 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,11 +291,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4D543D48DD103575AE874A5E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-contexter/Pods-contexter-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		742E4873C8FF53B8BF26767E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-contexter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		78C615D2F2EDC7FE23983973 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-contexter/Pods-contexter-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-contexter/Pods-contexter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5B48BE081FBFAD0B00B07388 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B48BE431FC0986200B07388 /* VideoCapture.swift in Sources */,
 				5B48BE121FBFAD0B00B07388 /* ViewController.swift in Sources */,
 				5B48BE101FBFAD0B00B07388 /* AppDelegate.swift in Sources */,
 				5B48BE181FBFAD0B00B07388 /* contexter.xcdatamodeld in Sources */,
@@ -428,11 +517,13 @@
 		};
 		5B48BE381FBFAD0B00B07388 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DED2462DDE8461F091FAF78 /* Pods-contexter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9382NE34GX;
 				INFOPLIST_FILE = contexter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = asvk.contexter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -443,11 +534,13 @@
 		};
 		5B48BE391FBFAD0B00B07388 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFB83806DE4BCBB0C958CCC2 /* Pods-contexter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9382NE34GX;
 				INFOPLIST_FILE = contexter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = asvk.contexter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
