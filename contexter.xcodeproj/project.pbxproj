@@ -18,6 +18,7 @@
 		5B48BE331FBFAD0B00B07388 /* contexterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE321FBFAD0B00B07388 /* contexterUITests.swift */; };
 		5B48BE411FC094E800B07388 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 5B48BE401FC094E800B07388 /* Podfile */; };
 		5B48BE431FC0986200B07388 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE421FC0986200B07388 /* VideoCapture.swift */; };
+		5B48BE451FC09D7100B07388 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE441FC09D7100B07388 /* ImageUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		5B48BE341FBFAD0B00B07388 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B48BE401FC094E800B07388 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5B48BE421FC0986200B07388 /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
+		5B48BE441FC09D7100B07388 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		7DED2462DDE8461F091FAF78 /* Pods-contexter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contexter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-contexter/Pods-contexter.debug.xcconfig"; sourceTree = "<group>"; };
 		EFB83806DE4BCBB0C958CCC2 /* Pods-contexter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contexter.release.xcconfig"; path = "Pods/Target Support Files/Pods-contexter/Pods-contexter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +130,7 @@
 				5B48BE1E1FBFAD0B00B07388 /* Info.plist */,
 				5B48BE161FBFAD0B00B07388 /* contexter.xcdatamodeld */,
 				5B48BE421FC0986200B07388 /* VideoCapture.swift */,
+				5B48BE441FC09D7100B07388 /* ImageUtils.swift */,
 			);
 			path = contexter;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				5B48BE431FC0986200B07388 /* VideoCapture.swift in Sources */,
 				5B48BE121FBFAD0B00B07388 /* ViewController.swift in Sources */,
 				5B48BE101FBFAD0B00B07388 /* AppDelegate.swift in Sources */,
+				5B48BE451FC09D7100B07388 /* ImageUtils.swift in Sources */,
 				5B48BE181FBFAD0B00B07388 /* contexter.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
