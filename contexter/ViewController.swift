@@ -31,6 +31,16 @@ class ViewController: UIViewController {
     let session = AVCaptureSession()
     
     @IBAction func onDetectButton(_ sender: Any) {
+        let image = imageView.image!
+        let size = CGSize(width: 299, height: 299)
+        let resizedImage = ImageUtils.resizeImage(image: image, scaledToSize: size)
+        
+        let pixelbuf = ImageUtils.getPixelBuffer(from: resizedImage)
+        if pixelbuf == nil {
+            print ("can't get pixel buffer from image, fatal error")
+            return
+        }
+        let arr = ImageUtils.rgbaImageToPlusMinusOneBGRArray(pixelBuffer: pixelbuf!, size: size)
     }
     
     
