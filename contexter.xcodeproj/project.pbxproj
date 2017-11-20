@@ -19,6 +19,10 @@
 		5B48BE411FC094E800B07388 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 5B48BE401FC094E800B07388 /* Podfile */; };
 		5B48BE431FC0986200B07388 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE421FC0986200B07388 /* VideoCapture.swift */; };
 		5B48BE451FC09D7100B07388 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE441FC09D7100B07388 /* ImageUtils.swift */; };
+		5B48BE491FC0EFDC00B07388 /* MLUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE481FC0EFDC00B07388 /* MLUtils.swift */; };
+		5B48BE4D1FC0F17A00B07388 /* ContexterClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE4C1FC0F17A00B07388 /* ContexterClasses.swift */; };
+		5BB6CE001FC19065005FD60F /* contexter.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5BB6CDFE1FC1901C005FD60F /* contexter.mlmodel */; };
+		5BB6CE021FC190E4005FD60F /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB6CE011FC190E4005FD60F /* FileUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,10 @@
 		5B48BE401FC094E800B07388 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5B48BE421FC0986200B07388 /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
 		5B48BE441FC09D7100B07388 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
+		5B48BE481FC0EFDC00B07388 /* MLUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLUtils.swift; sourceTree = "<group>"; };
+		5B48BE4C1FC0F17A00B07388 /* ContexterClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContexterClasses.swift; sourceTree = "<group>"; };
+		5BB6CDFE1FC1901C005FD60F /* contexter.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = contexter.mlmodel; sourceTree = "<group>"; };
+		5BB6CE011FC190E4005FD60F /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		7DED2462DDE8461F091FAF78 /* Pods-contexter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contexter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-contexter/Pods-contexter.debug.xcconfig"; sourceTree = "<group>"; };
 		EFB83806DE4BCBB0C958CCC2 /* Pods-contexter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contexter.release.xcconfig"; path = "Pods/Target Support Files/Pods-contexter/Pods-contexter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +130,7 @@
 		5B48BE0E1FBFAD0B00B07388 /* contexter */ = {
 			isa = PBXGroup;
 			children = (
+				5B48BE4B1FC0F15800B07388 /* mlclasses */,
 				5B48BE0F1FBFAD0B00B07388 /* AppDelegate.swift */,
 				5B48BE111FBFAD0B00B07388 /* ViewController.swift */,
 				5B48BE131FBFAD0B00B07388 /* Main.storyboard */,
@@ -130,7 +139,8 @@
 				5B48BE1E1FBFAD0B00B07388 /* Info.plist */,
 				5B48BE161FBFAD0B00B07388 /* contexter.xcdatamodeld */,
 				5B48BE421FC0986200B07388 /* VideoCapture.swift */,
-				5B48BE441FC09D7100B07388 /* ImageUtils.swift */,
+				5BB6CDFE1FC1901C005FD60F /* contexter.mlmodel */,
+				5B48BE4A1FC0F10E00B07388 /* utils */,
 			);
 			path = contexter;
 			sourceTree = "<group>";
@@ -151,6 +161,24 @@
 				5B48BE341FBFAD0B00B07388 /* Info.plist */,
 			);
 			path = contexterUITests;
+			sourceTree = "<group>";
+		};
+		5B48BE4A1FC0F10E00B07388 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				5B48BE441FC09D7100B07388 /* ImageUtils.swift */,
+				5B48BE481FC0EFDC00B07388 /* MLUtils.swift */,
+				5BB6CE011FC190E4005FD60F /* FileUtils.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		5B48BE4B1FC0F15800B07388 /* mlclasses */ = {
+			isa = PBXGroup;
+			children = (
+				5B48BE4C1FC0F17A00B07388 /* ContexterClasses.swift */,
+			);
+			path = mlclasses;
 			sourceTree = "<group>";
 		};
 		D0F484C053367E9E64E53865 /* Frameworks */ = {
@@ -353,11 +381,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BB6CE021FC190E4005FD60F /* FileUtils.swift in Sources */,
 				5B48BE431FC0986200B07388 /* VideoCapture.swift in Sources */,
 				5B48BE121FBFAD0B00B07388 /* ViewController.swift in Sources */,
 				5B48BE101FBFAD0B00B07388 /* AppDelegate.swift in Sources */,
+				5B48BE4D1FC0F17A00B07388 /* ContexterClasses.swift in Sources */,
 				5B48BE451FC09D7100B07388 /* ImageUtils.swift in Sources */,
+				5BB6CE001FC19065005FD60F /* contexter.mlmodel in Sources */,
 				5B48BE181FBFAD0B00B07388 /* contexter.xcdatamodeld in Sources */,
+				5B48BE491FC0EFDC00B07388 /* MLUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

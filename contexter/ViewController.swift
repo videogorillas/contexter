@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import RxSwift
+import CoreML
 
 class ViewController: UIViewController {
 
@@ -30,17 +31,23 @@ class ViewController: UIViewController {
     var captureDevice : AVCaptureDevice!
     let session = AVCaptureSession()
     
+    let mlcontexter = contexter()
+    let mlcontexterClasses = ContexterClasses()
+    
     @IBAction func onDetectButton(_ sender: Any) {
         let image = imageView.image!
         let size = CGSize(width: 299, height: 299)
         let resizedImage = ImageUtils.resizeImage(image: image, scaledToSize: size)
+
+        let predictData = MLUtils.rgbaImageToPlusMinusOneBGRArray(image: resizedImage)
+//        FileUtils.saveMLArrayToFile(predictData, "predict-" + String(Int(Date().timeIntervalSince1970)) + ".txt") 
         
-        let pixelbuf = ImageUtils.getPixelBuffer(from: resizedImage)
-        if pixelbuf == nil {
-            print ("can't get pixel buffer from image, fatal error")
+        guard let output = try? mlcontexter.prediction(input1: predictData) else {
+            print("fatal error :( ")
             return
         }
-        let arr = ImageUtils.rgbaImageToPlusMinusOneBGRArray(pixelBuffer: pixelbuf!, size: size)
+        print("\(MLUtils.getFirstMaxLabel(arr: output.output1, dict: mlcontexterClasses.dict))")
+        print("\(output.output1[741])")
     }
     
     

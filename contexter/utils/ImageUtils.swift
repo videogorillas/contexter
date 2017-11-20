@@ -46,42 +46,14 @@ class ImageUtils {
         return newImage
     }
     
-    static func rgbaImageToPlusMinusOneBGRArray(pixelBuffer: CVPixelBuffer, size: CGSize) -> MLMultiArray {
-        CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
-        guard var res = try? MLMultiArray.init(shape: [3, size.height as NSNumber, size.width as NSNumber], dataType: MLMultiArrayDataType.float32) else {
-            fatalError()
-        }
-        
-        let int32Buffer = unsafeBitCast(CVPixelBufferGetBaseAddress(pixelBuffer), to: UnsafeMutablePointer<UInt32>.self)
-        let int32PerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
-        
-        let blueChannel = 0 as NSNumber
-        let greenChannel = 1 as NSNumber
-        let redChannel = 2 as NSNumber
-        
-        for y in 0 ..< Int(size.height) {
-            for x in 0 ..< Int(size.width) {
-                // RGBA
-                let data = int32Buffer[y * Int(size.height) + x]
-                let redComponent = (data & 0xFF000000) >> 24
-                let greenComponent = (data & 0x00FF0000) >> 16
-                let blueComponent = (data & 0x0000FF00) >> 8
-                
-                let normalizedRed = normalizedPlusMinusOne(redChannel)
-                let normalizedGreen = normalizedPlusMinusOne(greenChannel)
-                let normalizedBlue = normalizedPlusMinusOne(blueChannel)
-                
-                let yy = y as NSNumber
-                let xx = x as NSNumber
-                
-                res[[blueChannel, yy, xx]] = normalizedBlue as NSNumber
-                res[[greenChannel, yy, xx]] = normalizedGreen as NSNumber
-                res[[redChannel, yy, xx]] = normalizedRed as NSNumber
-            }
-        }
-        
-        CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
-        return res
+    static func pixelData(_ image: UIImage) -> [UInt8]? {
+        let dataSize = image.size.width * image.size.height * 4
+        var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let context = CGContext(data: &pixelData, width: Int(image.size.width), height: Int(image.size.height), bitsPerComponent: 8, bytesPerRow: 4 * Int(image.size.width), space: colorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue)
+        guard let cgImage = image.cgImage else { return nil }
+        context?.draw(cgImage, in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+        return pixelData
     }
     
     static func normalizedPlusMinusOne(_ value :NSNumber) -> Float32 {

@@ -14,7 +14,7 @@ extension ViewController:  AVCaptureVideoDataOutputSampleBufferDelegate {
     func setupAVCapture(){
         self.session.sessionPreset = AVCaptureSessionPreset640x480
         guard let device = AVCaptureDevice
-            .defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .back)
+            .defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: AVCaptureDevicePosition.back)
             else { return }
         captureDevice = device
         //        captureDevice.activeColorSpace = AVCaptureColorSpace.sRGB
