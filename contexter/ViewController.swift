@@ -34,22 +34,40 @@ class ViewController: UIViewController {
     let mlcontexter = contexter()
     let mlcontexterClasses = ContexterClasses()
     
+    let imagenet = tiny_imagenet()
+    let imagenetClasses = TinyImageNetClasses()
+    
     @IBAction func onDetectButton(_ sender: Any) {
         let image = imageView.image!
-        let size = CGSize(width: 299, height: 299)
-        let resizedImage = ImageUtils.resizeImage(image: image, scaledToSize: size)
-
-        let predictData = MLUtils.rgbaImageToPlusMinusOneBGRArray(image: resizedImage)
-//        FileUtils.saveMLArrayToFile(predictData, "predict-" + String(Int(Date().timeIntervalSince1970)) + ".txt") 
+        let pixelbuffer64x64 = resizedPixelBuffer(image: image, size: CGSize(width: 64, height: 64))
+        let pixelbuffer299x299 = resizedPixelBuffer(image: image, size: CGSize(width: 299, height: 299))
         
-        guard let output = try? mlcontexter.prediction(input1: predictData) else {
+        guard let tinyImageNetOutput = try? imagenet.prediction(image: pixelbuffer64x64) else {
             print("fatal error :( ")
             return
         }
-        print("\(MLUtils.getFirstMaxLabel(arr: output.output1, dict: mlcontexterClasses.dict))")
-        print("\(output.output1[741])")
+        
+        guard let mlcontexterOutput = try? mlcontexter.prediction(image: pixelbuffer299x299) else {
+            print("fatal error :( ")
+            return
+        }
+        
+        let tinyImageNetLabels = MLUtils.getFirstNLabels(arr: tinyImageNetOutput.output1, dict: imagenetClasses.dict, classes: 5)
+        
+        let mlcontexterLabels = MLUtils.getFirstNLabels(arr: mlcontexterOutput.output1, dict: mlcontexterClasses.dict, classes: 5)
+        
+        label1.text = mlcontexterLabels[0]
+        label2.text = mlcontexterLabels[1]
+        
+        label4.text = tinyImageNetLabels[0]
+        label5.text = tinyImageNetLabels[1]
     }
     
+    func resizedPixelBuffer(image: UIImage, size: CGSize) -> CVPixelBuffer {
+        let resizedImage = ImageUtils.resizeImage(image: image, scaledToSize: size)
+        let pixelBuffer = ImageUtils.getPixelBuffer(from: resizedImage)
+        return pixelBuffer!
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
