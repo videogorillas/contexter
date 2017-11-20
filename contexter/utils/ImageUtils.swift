@@ -56,6 +56,47 @@ class ImageUtils {
         return pixelData
     }
     
+    static func cgImageFromPixelData(data: [UInt8]?, size: CGSize) -> CGImage? {
+        var imageRef: CGImage?
+        if var data = data {
+            let bitsPerComponent = 8
+            let bytesPerPixel = 4
+            let bitsPerPixel = bytesPerPixel * bitsPerComponent
+            let bytesPerRow = Float(bytesPerPixel) * Float(size.width)
+            let totalBytes = Float(size.height) * bytesPerRow
+            
+            imageRef = withUnsafeMutablePointer(to: &data, {
+                ptr -> CGImage? in
+                var imageRef: CGImage?
+                let colorSpaceRef = CGColorSpaceCreateDeviceRGB()
+                let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue).union(CGBitmapInfo())
+                let data = UnsafeRawPointer(ptr.pointee).assumingMemoryBound(to: UInt8.self)
+                let releaseData: CGDataProviderReleaseDataCallback = {
+                    (info: UnsafeMutableRawPointer?, data: UnsafeRawPointer, size: Int) -> () in
+                    print("gaga")
+                }
+                
+                if let providerRef = CGDataProvider(dataInfo: nil, data: data, size: Int(totalBytes), releaseData: releaseData) {
+                    imageRef = CGImage(width: Int(size.width),
+                                       height: Int(size.height),
+                                       bitsPerComponent: bitsPerComponent,
+                                       bitsPerPixel: bitsPerPixel,
+                                       bytesPerRow: Int(bytesPerRow),
+                                       space: colorSpaceRef,
+                                       bitmapInfo: bitmapInfo,
+                                       provider: providerRef,
+                                       decode: nil,
+                                       shouldInterpolate: false,
+                                       intent: CGColorRenderingIntent.defaultIntent)
+                }
+                
+                return imageRef
+            })
+        }
+        
+        return imageRef
+    }
+    
     static func normalizedPlusMinusOne(_ value :NSNumber) -> Float32 {
         return Float32(value) / 127.5 - 1
     }
