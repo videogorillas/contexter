@@ -27,6 +27,7 @@ class ViewController: UIViewController {
 
     let imageSubject = PublishSubject<UIImage>()
     let segmentedImageSubject = PublishSubject<UIImage>()
+    let readyOnNewDataSubject = BehaviorSubject<Bool>(value: true)
     var imageDisposible: CompositeDisposable?
 
     //Camera Capture requiered properties
@@ -103,50 +104,70 @@ class ViewController: UIViewController {
             imageDisposible?.dispose()
             imageDisposible = CompositeDisposable()
         }
+        var isPipelineStarted = false
         imageDisposible?.insert(imageSubject
-                .subscribe { event in
+            .subscribe { event in
+                    let image = event.element
                     if self.oneImageView {
                         DispatchQueue.main.async {
-                            self.imageView.image = event.element
+                            self.imageView.image = image
                         }
                     } else {
-                        let newCGImage = event.element?.cgImage?.copy()
-                        let newImage = UIImage(cgImage: newCGImage!, scale: event.element!.scale, orientation: event.element!.imageOrientation)
-                        self.segmentedImageSubject.onNext(newImage)
-                        
                         DispatchQueue.main.async {
-                            self.imageViewLeft.image = event.element
+                            self.imageViewLeft.image = image
+                            if (self.imageViewLeft.image != nil && !isPipelineStarted ) {
+                                self.readyOnNewDataSubject.onNext(true)
+                            }
                          }
                     }
-                })
-
-        imageDisposible?.insert(segmentedImageSubject
+                }
+            )
+        
+        self.imageDisposible?.insert(
+            self.readyOnNewDataSubject.subscribe { event in
+                DispatchQueue.main.async {
+                    if (self.imageViewLeft.image != nil) {
+                        self.segmentedImageSubject.onNext(self.imageViewLeft.image!)
+                        isPipelineStarted = true
+                    }
+                }
+                
+            }
+        )
+        
+        imageDisposible?.insert(
+            segmentedImageSubject
                 .subscribe { event in
-//                    let pixelData = ImageUtils.pixelData(event.element!)
-//                    let cgImage = ImageUtils.cgImageFromPixelData(data: pixelData, size: event.element!.size)
-//                    let image = UIImage.init(cgImage: cgImage!)
-                    
                     let image = event.element!
                     
                     let pixels = ImageUtils.pixelData(image)
-                    let r = pixels!.enumerated().filter { $0.offset % 4 == 0 }.map { $0.element }
-                    let g = pixels!.enumerated().filter { $0.offset % 4 == 1 }.map { $0.element * 0 }
-                    let b = pixels!.enumerated().filter { $0.offset % 4 == 2 }.map { $0.element * 0 }
-//                    let a = pixels!.enumerated().filter { $0.offset % 4 == 3 }.map { $0.element }
-                    
                     let multiArray = MultiArray<Int32>.init(shape: [3, Int(image.size.height), Int(image.size.width)])
-                    
-                    let combination = r + g + b
-                    
-                    for (index, element) in combination.enumerated() {
-                        multiArray.array[index] = element as NSNumber
-                    }
 
+                    var rcount = 0
+                    var gcount = Int(1 * image.size.width * image.size.height)
+                    var bcount = Int(2 * image.size.width * image.size.height)
+                    for (index, element) in pixels!.enumerated() {
+                        if index % 4 == 0 {
+                            multiArray.array[rcount] = element as NSNumber
+                            rcount += 1
+                        }
+                        
+                        if index % 4 == 1 {
+                            multiArray.array[gcount] = element * 0 as NSNumber
+                            gcount += 1
+                        }
+                        
+                        if index % 4 == 2 {
+                            multiArray.array[bcount] = element * 0 as NSNumber
+                            bcount += 1
+                        }
+                    }
+                    
                     DispatchQueue.main.async {
                         self.imageViewRight.image = multiArray.image(offset: 0, scale: 1)
+                        self.readyOnNewDataSubject.onNext(true)
                     }
                 })
-        
     }
 
     func switchScreens() {
