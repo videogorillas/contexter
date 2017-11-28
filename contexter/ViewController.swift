@@ -38,11 +38,10 @@ class ViewController: UIViewController {
     var captureDevice: AVCaptureDevice!
     let session = AVCaptureSession()
 
-    let mlcontexter = contexter()
-    let mlcontexterClasses = ContexterClasses()
-
-    let imagenet = tiny_imagenet()
-    let imagenetClasses = TinyImageNetClasses()
+//    let mlcontexter = contexter()
+//    let mlcontexterClasses = ContexterClasses()
+    
+    let segnet = segmenter()
 
     var oneImageView = false
 
@@ -59,28 +58,17 @@ class ViewController: UIViewController {
 
     @IBAction func onDetectButton(_ sender: Any) {
         let image = imageView.image!
-        let pixelbuffer64x64 = resizedPixelBuffer(image: image, size: CGSize(width: 64, height: 64))
         let pixelbuffer299x299 = resizedPixelBuffer(image: image, size: CGSize(width: 299, height: 299))
 
-        guard let tinyImageNetOutput = try? imagenet.prediction(image: pixelbuffer64x64) else {
-            print("fatal error :( ")
-            return
-        }
-
-        guard let mlcontexterOutput = try? mlcontexter.prediction(image: pixelbuffer299x299) else {
-            print("fatal error :( ")
-            return
-        }
-
-        let tinyImageNetLabels = MLUtils.getFirstNLabels(arr: tinyImageNetOutput.output1, dict: imagenetClasses.dict, classes: 5)
-
-        let mlcontexterLabels = MLUtils.getFirstNLabels(arr: mlcontexterOutput.output1, dict: mlcontexterClasses.dict, classes: 5)
-
-        label1.text = mlcontexterLabels[0]
-        label2.text = mlcontexterLabels[1]
-
-        label4.text = tinyImageNetLabels[0]
-        label5.text = tinyImageNetLabels[1]
+//        guard let mlcontexterOutput = try? mlcontexter?.prediction(image: pixelbuffer299x299) else {
+//            print("fatal error :( ")
+//            return
+//        }
+//
+//        let mlcontexterLabels = MLUtils.getFirstNLabels(arr: mlcontexterOutput.output1, dict: mlcontexterClasses.dict, classes: 5)
+//
+//        label1.text = mlcontexterLabels[0]
+//        label2.text = mlcontexterLabels[1]
     }
 
     func resizedPixelBuffer(image: UIImage, size: CGSize) -> CVPixelBuffer {
@@ -122,48 +110,61 @@ class ViewController: UIViewController {
                     }
                 }
             )
-        
+
         self.imageDisposible?.insert(
-            self.readyOnNewDataSubject.subscribe { event in
-                DispatchQueue.main.async {
+                self.readyOnNewDataSubject.subscribe { event in
                     if (self.imageViewLeft.image != nil) {
                         self.segmentedImageSubject.onNext(self.imageViewLeft.image!)
                         isPipelineStarted = true
                     }
+
                 }
-                
-            }
         )
         
         imageDisposible?.insert(
             segmentedImageSubject
                 .subscribe { event in
-                    let image = event.element!
+                    let width = 256
+                    let height = 256
+                    let size = width*height
+                    
+                    let pixelBuffer = self.resizedPixelBuffer(image: event.element!, size: CGSize(width: width, height: height))
+                    let image = UIImage.init(pixelBuffer: pixelBuffer)!
+
+                    let startPredict = DispatchTime.now()
+                    guard let unetout = try? self.segnet.prediction(image: pixelBuffer) else {
+                        print("fatal error :( ")
+                        return
+                    }
+                    let endPredict = DispatchTime.now()
+                    print("predict time: \(endPredict.uptimeNanoseconds - startPredict.uptimeNanoseconds)")
                     
                     let pixels = ImageUtils.pixelData(image)
                     let multiArray = MultiArray<Int32>.init(shape: [3, Int(image.size.height), Int(image.size.width)])
 
-                    var rcount = 0
-                    var gcount = Int(1 * image.size.width * image.size.height)
-                    var bcount = Int(2 * image.size.width * image.size.height)
-                    for (index, element) in pixels!.enumerated() {
-                        if index % 4 == 0 {
-                            multiArray.array[rcount] = element as NSNumber
-                            rcount += 1
-                        }
+                    let startFillFrame = DispatchTime.now()
+                    for i in 0..<size {
+                        // r g b a r g b a r g
+                        // 0 1 2 3 4 5 6 7 8 9
+                        let rid = i*4
+                        let mrid = i
                         
-                        if index % 4 == 1 {
-                            multiArray.array[gcount] = element * 0 as NSNumber
-                            gcount += 1
-                        }
+                        let gid = rid + 1
+                        let mgid = size + i
                         
-                        if index % 4 == 2 {
-                            multiArray.array[bcount] = element * 0 as NSNumber
-                            bcount += 1
-                        }
+                        let bid = rid + 2
+                        let mbid = 2*size + i
+                        
+                        let mask = unetout.output1[i]
+                        
+                        multiArray.array[mrid] = (Double(pixels![rid]) * (1.0 - mask.doubleValue)) as NSNumber    // r
+                        multiArray.array[mgid] = (Double(pixels![gid]) * (1.0 - mask.doubleValue)) as NSNumber    // g
+                        multiArray.array[mbid] = (Double(pixels![bid]) * (1.0 - mask.doubleValue)) as NSNumber    // b
                     }
-                    
-                    DispatchQueue.main.async {
+                    let endFillFrame = DispatchTime.now()
+                    print("frame render time: \(endFillFrame.uptimeNanoseconds - startFillFrame.uptimeNanoseconds)")
+
+                DispatchQueue.main.async {
                         self.imageViewRight.image = multiArray.image(offset: 0, scale: 1)
                         self.readyOnNewDataSubject.onNext(true)
                     }

@@ -22,9 +22,6 @@
 		5B48BE491FC0EFDC00B07388 /* MLUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE481FC0EFDC00B07388 /* MLUtils.swift */; };
 		5B48BE4D1FC0F17A00B07388 /* ContexterClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BE4C1FC0F17A00B07388 /* ContexterClasses.swift */; };
 		5BB6CE021FC190E4005FD60F /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB6CE011FC190E4005FD60F /* FileUtils.swift */; };
-		5BF000881FC3181F003EDC3B /* contexter.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5BB6CDFE1FC1901C005FD60F /* contexter.mlmodel */; };
-		5BF0008A1FC31A1D003EDC3B /* tiny_imagenet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5BF000891FC31A1D003EDC3B /* tiny_imagenet.mlmodel */; };
-		5BF0008C1FC31ADA003EDC3B /* TinyImageNetClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0008B1FC31ADA003EDC3B /* TinyImageNetClasses.swift */; };
 		5BF0008F1FC3724E003EDC3B /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0008E1FC3724D003EDC3B /* Array.swift */; };
 		5BF000911FC3725D003EDC3B /* CVPixelBuffer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF000901FC3725D003EDC3B /* CVPixelBuffer+Helpers.swift */; };
 		5BF000931FC3726B003EDC3B /* MLMultiArray+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF000921FC3726B003EDC3B /* MLMultiArray+Image.swift */; };
@@ -33,6 +30,7 @@
 		5BF000991FC37296003EDC3B /* NonMaxSuppression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF000981FC37296003EDC3B /* NonMaxSuppression.swift */; };
 		5BF0009B1FC372A3003EDC3B /* Predictions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0009A1FC372A3003EDC3B /* Predictions.swift */; };
 		5BF0009D1FC372B1003EDC3B /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0009C1FC372B1003EDC3B /* UIImage+CVPixelBuffer.swift */; };
+		5BFD2D721FCDD1D70034A9A0 /* segmenter.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD2D711FCDD1D70034A9A0 /* segmenter.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,10 +71,7 @@
 		5B48BE441FC09D7100B07388 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		5B48BE481FC0EFDC00B07388 /* MLUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLUtils.swift; sourceTree = "<group>"; };
 		5B48BE4C1FC0F17A00B07388 /* ContexterClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContexterClasses.swift; sourceTree = "<group>"; };
-		5BB6CDFE1FC1901C005FD60F /* contexter.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = contexter.mlmodel; sourceTree = "<group>"; };
 		5BB6CE011FC190E4005FD60F /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
-		5BF000891FC31A1D003EDC3B /* tiny_imagenet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = tiny_imagenet.mlmodel; sourceTree = "<group>"; };
-		5BF0008B1FC31ADA003EDC3B /* TinyImageNetClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyImageNetClasses.swift; sourceTree = "<group>"; };
 		5BF0008E1FC3724D003EDC3B /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array.swift; path = contexter/Array.swift; sourceTree = SOURCE_ROOT; };
 		5BF000901FC3725D003EDC3B /* CVPixelBuffer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CVPixelBuffer+Helpers.swift"; path = "contexter/CVPixelBuffer+Helpers.swift"; sourceTree = SOURCE_ROOT; };
 		5BF000921FC3726B003EDC3B /* MLMultiArray+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MLMultiArray+Image.swift"; path = "contexter/MLMultiArray+Image.swift"; sourceTree = SOURCE_ROOT; };
@@ -85,6 +80,7 @@
 		5BF000981FC37296003EDC3B /* NonMaxSuppression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NonMaxSuppression.swift; path = contexter/NonMaxSuppression.swift; sourceTree = SOURCE_ROOT; };
 		5BF0009A1FC372A3003EDC3B /* Predictions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Predictions.swift; path = contexter/Predictions.swift; sourceTree = SOURCE_ROOT; };
 		5BF0009C1FC372B1003EDC3B /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+CVPixelBuffer.swift"; path = "contexter/UIImage+CVPixelBuffer.swift"; sourceTree = SOURCE_ROOT; };
+		5BFD2D711FCDD1D70034A9A0 /* segmenter.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = segmenter.mlmodel; sourceTree = "<group>"; };
 		7DED2462DDE8461F091FAF78 /* Pods-contexter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contexter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-contexter/Pods-contexter.debug.xcconfig"; sourceTree = "<group>"; };
 		EFB83806DE4BCBB0C958CCC2 /* Pods-contexter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contexter.release.xcconfig"; path = "Pods/Target Support Files/Pods-contexter/Pods-contexter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,8 +156,7 @@
 				5B48BE1E1FBFAD0B00B07388 /* Info.plist */,
 				5B48BE161FBFAD0B00B07388 /* contexter.xcdatamodeld */,
 				5B48BE421FC0986200B07388 /* VideoCapture.swift */,
-				5BB6CDFE1FC1901C005FD60F /* contexter.mlmodel */,
-				5BF000891FC31A1D003EDC3B /* tiny_imagenet.mlmodel */,
+				5BFD2D711FCDD1D70034A9A0 /* segmenter.mlmodel */,
 				5B48BE4A1FC0F10E00B07388 /* utils */,
 			);
 			path = contexter;
@@ -199,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				5B48BE4C1FC0F17A00B07388 /* ContexterClasses.swift */,
-				5BF0008B1FC31ADA003EDC3B /* TinyImageNetClasses.swift */,
 			);
 			path = mlclasses;
 			sourceTree = "<group>";
@@ -422,11 +416,9 @@
 				5BB6CE021FC190E4005FD60F /* FileUtils.swift in Sources */,
 				5BF000991FC37296003EDC3B /* NonMaxSuppression.swift in Sources */,
 				5B48BE431FC0986200B07388 /* VideoCapture.swift in Sources */,
-				5BF0008C1FC31ADA003EDC3B /* TinyImageNetClasses.swift in Sources */,
 				5BF0009B1FC372A3003EDC3B /* Predictions.swift in Sources */,
 				5BF000911FC3725D003EDC3B /* CVPixelBuffer+Helpers.swift in Sources */,
 				5BF0009D1FC372B1003EDC3B /* UIImage+CVPixelBuffer.swift in Sources */,
-				5BF0008A1FC31A1D003EDC3B /* tiny_imagenet.mlmodel in Sources */,
 				5BF000971FC37288003EDC3B /* MultiArray.swift in Sources */,
 				5B48BE121FBFAD0B00B07388 /* ViewController.swift in Sources */,
 				5B48BE101FBFAD0B00B07388 /* AppDelegate.swift in Sources */,
@@ -434,9 +426,9 @@
 				5B48BE451FC09D7100B07388 /* ImageUtils.swift in Sources */,
 				5B48BE181FBFAD0B00B07388 /* contexter.xcdatamodeld in Sources */,
 				5BF000931FC3726B003EDC3B /* MLMultiArray+Image.swift in Sources */,
+				5BFD2D721FCDD1D70034A9A0 /* segmenter.mlmodel in Sources */,
 				5BF0008F1FC3724E003EDC3B /* Array.swift in Sources */,
 				5B48BE491FC0EFDC00B07388 /* MLUtils.swift in Sources */,
-				5BF000881FC3181F003EDC3B /* contexter.mlmodel in Sources */,
 				5BF000951FC3727A003EDC3B /* Math.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -3,6 +3,29 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #3 in ViewController.initImageView():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "mask.doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "mask.floatValue">
+            </PersistentString>
+            <PersistentString
+               value = "unetout.output1[100].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "unetout.output1[16500].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "unetout.output1[1000].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "Double(element) * (1.0 - mask.doubleValue)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "static FileUtils.saveMLArrayToFile(_:_:):FileUtils.swift">
          <PersistentStrings>
             <PersistentString
@@ -13,6 +36,20 @@
             </PersistentString>
             <PersistentString
                value = "String(format: &quot;%f&quot;, arr[4242])">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static MLUtils.transpose3d(_:):MLUtils.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "y.intValue">
+            </PersistentString>
+            <PersistentString
+               value = "x.intValue">
+            </PersistentString>
+            <PersistentString
+               value = "z.intValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -51,20 +88,6 @@
          <PersistentStrings>
             <PersistentString
                value = "image.size">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "static MLUtils.transpose3d(_:):MLUtils.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "z.intValue">
-            </PersistentString>
-            <PersistentString
-               value = "x.intValue">
-            </PersistentString>
-            <PersistentString
-               value = "y.intValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
