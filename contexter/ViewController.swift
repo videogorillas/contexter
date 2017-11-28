@@ -41,7 +41,7 @@ class ViewController: UIViewController {
 //    let mlcontexter = contexter()
 //    let mlcontexterClasses = ContexterClasses()
     
-    let segnet = segmenter()
+    let segnet = segmenterHuman()
 
     var oneImageView = false
 

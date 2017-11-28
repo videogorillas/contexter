@@ -30,7 +30,7 @@
 		5BF000991FC37296003EDC3B /* NonMaxSuppression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF000981FC37296003EDC3B /* NonMaxSuppression.swift */; };
 		5BF0009B1FC372A3003EDC3B /* Predictions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0009A1FC372A3003EDC3B /* Predictions.swift */; };
 		5BF0009D1FC372B1003EDC3B /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0009C1FC372B1003EDC3B /* UIImage+CVPixelBuffer.swift */; };
-		5BFD2D721FCDD1D70034A9A0 /* segmenter.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD2D711FCDD1D70034A9A0 /* segmenter.mlmodel */; };
+		5BFD2D721FCDD1D70034A9A0 /* segmenterHuman.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD2D711FCDD1D70034A9A0 /* segmenterHuman.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +80,7 @@
 		5BF000981FC37296003EDC3B /* NonMaxSuppression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NonMaxSuppression.swift; path = contexter/NonMaxSuppression.swift; sourceTree = SOURCE_ROOT; };
 		5BF0009A1FC372A3003EDC3B /* Predictions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Predictions.swift; path = contexter/Predictions.swift; sourceTree = SOURCE_ROOT; };
 		5BF0009C1FC372B1003EDC3B /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+CVPixelBuffer.swift"; path = "contexter/UIImage+CVPixelBuffer.swift"; sourceTree = SOURCE_ROOT; };
-		5BFD2D711FCDD1D70034A9A0 /* segmenter.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = segmenter.mlmodel; sourceTree = "<group>"; };
+		5BFD2D711FCDD1D70034A9A0 /* segmenterHuman.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = segmenterHuman.mlmodel; sourceTree = "<group>"; };
 		7DED2462DDE8461F091FAF78 /* Pods-contexter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contexter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-contexter/Pods-contexter.debug.xcconfig"; sourceTree = "<group>"; };
 		EFB83806DE4BCBB0C958CCC2 /* Pods-contexter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contexter.release.xcconfig"; path = "Pods/Target Support Files/Pods-contexter/Pods-contexter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +146,7 @@
 		5B48BE0E1FBFAD0B00B07388 /* contexter */ = {
 			isa = PBXGroup;
 			children = (
+				5BFD2D731FCE2AB70034A9A0 /* mlmodels */,
 				5BF0008D1FC3722A003EDC3B /* coremlhelpers */,
 				5B48BE4B1FC0F15800B07388 /* mlclasses */,
 				5B48BE0F1FBFAD0B00B07388 /* AppDelegate.swift */,
@@ -156,7 +157,6 @@
 				5B48BE1E1FBFAD0B00B07388 /* Info.plist */,
 				5B48BE161FBFAD0B00B07388 /* contexter.xcdatamodeld */,
 				5B48BE421FC0986200B07388 /* VideoCapture.swift */,
-				5BFD2D711FCDD1D70034A9A0 /* segmenter.mlmodel */,
 				5B48BE4A1FC0F10E00B07388 /* utils */,
 			);
 			path = contexter;
@@ -211,6 +211,14 @@
 				5BF0009C1FC372B1003EDC3B /* UIImage+CVPixelBuffer.swift */,
 			);
 			path = coremlhelpers;
+			sourceTree = "<group>";
+		};
+		5BFD2D731FCE2AB70034A9A0 /* mlmodels */ = {
+			isa = PBXGroup;
+			children = (
+				5BFD2D711FCDD1D70034A9A0 /* segmenterHuman.mlmodel */,
+			);
+			path = mlmodels;
 			sourceTree = "<group>";
 		};
 		D0F484C053367E9E64E53865 /* Frameworks */ = {
@@ -426,7 +434,7 @@
 				5B48BE451FC09D7100B07388 /* ImageUtils.swift in Sources */,
 				5B48BE181FBFAD0B00B07388 /* contexter.xcdatamodeld in Sources */,
 				5BF000931FC3726B003EDC3B /* MLMultiArray+Image.swift in Sources */,
-				5BFD2D721FCDD1D70034A9A0 /* segmenter.mlmodel in Sources */,
+				5BFD2D721FCDD1D70034A9A0 /* segmenterHuman.mlmodel in Sources */,
 				5BF0008F1FC3724E003EDC3B /* Array.swift in Sources */,
 				5B48BE491FC0EFDC00B07388 /* MLUtils.swift in Sources */,
 				5BF000951FC3727A003EDC3B /* Math.swift in Sources */,
