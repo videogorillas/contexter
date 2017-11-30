@@ -25,9 +25,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var detectButton: UIButton!
     @IBOutlet weak var switchModeButton: UIButton!
 
-    let imageSubject = PublishSubject<UIImage>()
-    let segmentedImageSubject = PublishSubject<UIImage>()
-    let readyOnNewDataSubject = BehaviorSubject<Bool>(value: true)
+    var imageSubject: PublishSubject<UIImage>?
+    var segmentedImageSubject: PublishSubject<UIImage>?
+    var readyOnNewDataSubject: BehaviorSubject<Bool>?
+    
     var imageDisposible: CompositeDisposable?
 
     //Camera Capture requiered properties
@@ -38,37 +39,46 @@ class ViewController: UIViewController {
     var captureDevice: AVCaptureDevice!
     let session = AVCaptureSession()
 
-//    let mlcontexter = contexter()
-//    let mlcontexterClasses = ContexterClasses()
+    let mlcontexter = contexter()
+    let mlcontexterClasses = ContexterClasses()
     
     let segnet = segmenterHuman()
 
-    var oneImageView = false
+    var oneImageView = true
 
     @IBAction func onSwitchModeClick(_ sender: Any) {
         oneImageView = !oneImageView
+        
+        imageViewLeft.image = nil
+        imageViewRight.image = nil
+        imageView.image = nil
+        imageDisposible?.dispose()
+
         if oneImageView {
             switchModeButton.setTitle("Contexter mode", for: UIControlState.normal)
         } else {
             switchModeButton.setTitle("Segmenter mode", for: UIControlState.normal)
         }
-        switchScreens()
+        
         initImageView()
+        switchScreens()
     }
 
     @IBAction func onDetectButton(_ sender: Any) {
         let image = imageView.image!
-        let pixelbuffer299x299 = resizedPixelBuffer(image: image, size: CGSize(width: 299, height: 299))
+        
+        let resized = ImageUtils.resizeImage(image: image, scaledToSize: CGSize(width: 256, height: 256))
+        let normalized = MLUtils.rgbaImageToPlusMinusOneRGBArray(image: resized)
 
-//        guard let mlcontexterOutput = try? mlcontexter?.prediction(image: pixelbuffer299x299) else {
-//            print("fatal error :( ")
-//            return
-//        }
-//
-//        let mlcontexterLabels = MLUtils.getFirstNLabels(arr: mlcontexterOutput.output1, dict: mlcontexterClasses.dict, classes: 5)
-//
-//        label1.text = mlcontexterLabels[0]
-//        label2.text = mlcontexterLabels[1]
+        guard let mlcontexterOutput = try? mlcontexter.prediction(image: normalized) else {
+            print("fatal error :( ")
+            return
+        }
+
+        let mlcontexterLabels = MLUtils.getFirstNLabels(arr: mlcontexterOutput.output1, dict: mlcontexterClasses.dict, classes: 2)
+
+        label1.text = mlcontexterLabels[0].0 + " " + String(format: "%\(0.3)f", mlcontexterLabels[0].1)
+        label2.text = mlcontexterLabels[1].0 + " " + String(format: "%\(0.3)f", mlcontexterLabels[1].1)
     }
 
     func resizedPixelBuffer(image: UIImage, size: CGSize) -> CVPixelBuffer {
@@ -82,18 +92,26 @@ class ViewController: UIViewController {
         self.setupAVCapture()
         switchScreens()
         initImageView()
-        switchModeButton.isHidden = true
+        switchModeButton.isHidden = false
+        switchModeButton.setTitle("Contexter mode", for: UIControlState.normal)
     }
 
     func initImageView() {
         if imageDisposible == nil {
             imageDisposible = CompositeDisposable()
+        } else if (imageDisposible?.isDisposed)! {
+            imageDisposible = CompositeDisposable()
         } else {
             imageDisposible?.dispose()
             imageDisposible = CompositeDisposable()
         }
+        
+        imageSubject = PublishSubject<UIImage>()
+        segmentedImageSubject = PublishSubject<UIImage>()
+        readyOnNewDataSubject = BehaviorSubject<Bool>(value: true)
+        
         var isPipelineStarted = false
-        imageDisposible?.insert(imageSubject
+        imageDisposible?.insert(imageSubject!
             .subscribe { event in
                     let image = event.element
                     if self.oneImageView {
@@ -104,7 +122,7 @@ class ViewController: UIViewController {
                         DispatchQueue.main.async {
                             self.imageViewLeft.image = image
                             if (self.imageViewLeft.image != nil && !isPipelineStarted ) {
-                                self.readyOnNewDataSubject.onNext(true)
+                                self.readyOnNewDataSubject!.onNext(true)
                             }
                          }
                     }
@@ -112,9 +130,9 @@ class ViewController: UIViewController {
             )
 
         self.imageDisposible?.insert(
-                self.readyOnNewDataSubject.subscribe { event in
+                self.readyOnNewDataSubject!.subscribe { event in
                     if (self.imageViewLeft.image != nil) {
-                        self.segmentedImageSubject.onNext(self.imageViewLeft.image!)
+                        self.segmentedImageSubject!.onNext(self.imageViewLeft.image!)
                         isPipelineStarted = true
                     }
 
@@ -122,7 +140,8 @@ class ViewController: UIViewController {
         )
         
         imageDisposible?.insert(
-            segmentedImageSubject
+            self.segmentedImageSubject!
+                .filter { _ in !self.oneImageView }
                 .subscribe { event in
                     let width = 256
                     let height = 256
@@ -166,7 +185,7 @@ class ViewController: UIViewController {
 
                 DispatchQueue.main.async {
                         self.imageViewRight.image = multiArray.image(offset: 0, scale: 1)
-                        self.readyOnNewDataSubject.onNext(true)
+                        self.readyOnNewDataSubject!.onNext(true)
                     }
                 })
     }
@@ -175,6 +194,14 @@ class ViewController: UIViewController {
         if oneImageView {
             imageViewLeft.isHidden = true
             imageViewRight.isHidden = true
+            
+            imageView.isHidden = false
+            detectButton.isHidden = false
+            label1.isHidden = false
+            label2.isHidden = false
+            label3.isHidden = false
+            label4.isHidden = false
+            label5.isHidden = false
         } else {
             imageView.isHidden = true
             detectButton.isHidden = true
@@ -183,6 +210,9 @@ class ViewController: UIViewController {
             label3.isHidden = true
             label4.isHidden = true
             label5.isHidden = true
+            
+            imageViewLeft.isHidden = false
+            imageViewRight.isHidden = false
         }
     }
 

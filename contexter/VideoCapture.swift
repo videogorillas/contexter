@@ -86,7 +86,7 @@ extension ViewController:  AVCaptureVideoDataOutputSampleBufferDelegate {
         if quartzImage != nil {
             // Create an image object from the Quartz image
             let image = UIImage.init(cgImage: quartzImage!);
-            imageSubject.onNext(image)
+            imageSubject!.onNext(image)
         }
     }
     

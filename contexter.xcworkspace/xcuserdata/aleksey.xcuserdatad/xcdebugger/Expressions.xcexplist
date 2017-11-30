@@ -3,25 +3,33 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ViewController.initImageView():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "imageDisposible == nil">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #3 in ViewController.initImageView():ViewController.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "unetout.output1[16500].doubleValue">
+            </PersistentString>
             <PersistentString
                value = "mask.doubleValue">
             </PersistentString>
             <PersistentString
-               value = "mask.floatValue">
+               value = "Double(element) * (1.0 - mask.doubleValue)">
             </PersistentString>
             <PersistentString
                value = "unetout.output1[100].doubleValue">
             </PersistentString>
             <PersistentString
-               value = "unetout.output1[16500].doubleValue">
-            </PersistentString>
-            <PersistentString
                value = "unetout.output1[1000].doubleValue">
             </PersistentString>
             <PersistentString
-               value = "Double(element) * (1.0 - mask.doubleValue)">
+               value = "mask.floatValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -43,13 +51,24 @@
          contextName = "static MLUtils.transpose3d(_:):MLUtils.swift">
          <PersistentStrings>
             <PersistentString
-               value = "y.intValue">
-            </PersistentString>
-            <PersistentString
                value = "x.intValue">
             </PersistentString>
             <PersistentString
+               value = "y.intValue">
+            </PersistentString>
+            <PersistentString
                value = "z.intValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static MLUtils.rgbaImageToPlusMinusOneRGBArray(image:):MLUtils.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int(pixels!.count)">
+            </PersistentString>
+            <PersistentString
+               value = "Int(array!.count)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -68,10 +87,31 @@
          contextName = "ViewController.onDetectButton(_:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "resizedImage.size">
+               value = "mlcontexterOutput.output1[3].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "mlcontexterOutput.output1[0].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "mlcontexterOutput.output1[1].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "normalized[4321].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "mlcontexterOutput.output1[2].doubleValue">
             </PersistentString>
             <PersistentString
                value = "resizedImage.imageRendererFormat">
+            </PersistentString>
+            <PersistentString
+               value = "resizedImage.size">
+            </PersistentString>
+            <PersistentString
+               value = "normalized[1234].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "normalized[16384].doubleValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -88,6 +128,23 @@
          <PersistentStrings>
             <PersistentString
                value = "image.size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static MLUtils.getFirstNLabels(arr:dict:classes:):MLUtils.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "arr[0].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "arr[3].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "arr[1].doubleValue">
+            </PersistentString>
+            <PersistentString
+               value = "arr[2].doubleValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
